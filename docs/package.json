@@ -1,0 +1,46 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "组件文档-vitepress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev --port 5001",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "npm:element-plus-y": "pnpm i @small_calcium_milk/element-plus-y@file:../dist/element-plus"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@small_calcium_milk/element-plus-y": "file:..\\dist\\element-plus",
+    "@vitepress-demo-preview/component": "^2.3.2",
+    "@vitepress-demo-preview/plugin": "^1.2.2",
+    "@vue/shared": "3.2.37",
+    "@vueuse/core": "9.1.0",
+    "axios": "0.27.2",
+    "clipboard-copy": "4.0.1",
+    "element-plus": "npm:element-plus@latest",
+    "markdown-it": "13.0.1",
+    "normalize.css": "8.0.1",
+    "nprogress": "0.2.0",
+    "prism-theme-vars": "0.2.3",
+    "vue": "^3.3.13"
+  },
+  "devDependencies": {
+    "@element-plus/build": "workspace:*",
+    "@element-plus/build-constants": "workspace:*",
+    "@element-plus/build-utils": "workspace:*",
+    "@types/markdown-it": "12.2.3",
+    "chalk": "4.1.2",
+    "consola": "2.15.3",
+    "escape-html": "1.0.3",
+    "fast-glob": "3.2.11",
+    "markdown-it-container": "3.0.0",
+    "octokit": "2.0.3",
+    "prismjs": "1.28.0",
+    "unocss": "0.33.5",
+    "vitepress": "1.0.0-rc.31"
+  }
+}
