@@ -17,6 +17,9 @@ import './custom.scss'
 import { AntDesignContainer, ElementPlusContainer, NaiveUIContainer } from '@vitepress-demo-preview/component'
 import '@vitepress-demo-preview/component/dist/style.css'
 
+// 贡献者
+import vpMember from "../vitepress/components/vp-members/index.vue"
+
 // 测试源组件
 import sourceComp from '../../../packages/components/cascader/src/cascader.vue'
 
@@ -30,6 +33,8 @@ export default {
 
     // 测试源组件
     app.component('sourceComp', sourceComp)
+    // 贡献者
+    app.component('vpMember', vpMember)
 
     app.component('demo-preview', ElementPlusContainer)
     globals.forEach(([name, Comp]) => {
