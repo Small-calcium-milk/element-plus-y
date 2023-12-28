@@ -1,30 +1,48 @@
----
-title: Cascader
-lang: en-US
----
+
 
 [//]: # (components-helper 是读取 第一级 # 后面的内容作为标题title )
-# Cascader 级联选择器
+# Cascader
 
-当一个数据集合有清晰的层级结构时，可通过级联选择器逐级查看并选择。
+If the options have a clear hierarchical structure, Cascader can be used to view and select them.
 
 :::tip
 
-在 SSR 场景下，您需要将组件包裹在 `<client-only></client-only>` 之中 (如: [Nuxt](https://nuxt.com/v3)) 和 SSG (eg: [VitePress](https://vitepress.vuejs.org/)).
+This component requires the `<client-only></client-only>` wrap when used in SSR (eg: [Nuxt](https://nuxt.com/v3)) and SSG (eg: [VitePress](https://vitepress.vuejs.org/)).
 
 :::
 
-## 基础用法
+## Basic usage
 
-:::demo 多选情况下 v-model绑定值的 2种类型.
+The basic configuration has been modified: `Open clear` | `Enable filtering` | `Disassociate parent` | `The selected value returns only the id of the node` | `value: 'id'` | `label: 'title'`
+
+:::demo
+
+cascader/basic
+
+:::
+
+## Specify the options option item value type
+
+Specifying whether the item's value type is number or string by `isKeyNumber` allows v-model bound data to adapt to the corresponding value type `default false`
+
+:::demo
+
+cascader/isKeyNumber
+
+:::
+
+
+## Two types of v-model binding values in multiple cases
+
+:::demo
 
 cascader/dataType
 
 :::
 
-## 全选子集按钮
+## Select All Subset button
 
-如果是存在子集children的情况下 默认显示 全选子集按钮
+If there is a subset of children, the default display of the select all subset button can be controlled by `showSelectAllBtn`
 
 :::demo
 
@@ -32,9 +50,9 @@ cascader/showSelectAllBtn
 
 :::
 
-## 单选情况下 不显示radio控件
+## The radio control is not displayed in the single option case
 
-如果是存在子集children的情况下 默认显示 全选子集按钮
+It can be controlled by `showRadioControl`
 
 :::demo
 
@@ -56,16 +74,20 @@ cascader/showRadioControl
 
 ### Cascader Attributes
 
-| Name                  | Description                                                         | Type                          | Default |
-|-----------------------|---------------------------------------------------------------------|-------------------------------|----|
-| model-value / v-model | 绑定值                                                                 | `string[] \| number[] \| any` | —  |
-| options               | 选项的数据源-同element-plus, `value` 和 `label` 可以通过 `CascaderProps`自定义.    | `object`                      | —  |
-| props   | 配置选项-同element-plus                                                  | `object`      | —  |
-| isKeyNumber           | options选项item的value 值 是否是 number 如果不是就默认字符串                         | `Boolean`                     | false  |
-| dataType              | 多选情况下 => v-model绑定值的类型   `String`: `'1,2,3'` 和 `Array`: `[2,3,4]` 两种 | ^[enum]`'String' \| 'Array'` | 'String'  |
-| showSelectAllBtn      | 是否显示全选子集按钮                                                          | `Boolean`      | true  |
-| showRadioControl    | 单选情况下是否显示radio控件 => 内置了默认自定义样式 单选情况下不显示radio控件   | `Boolean`      | false  |
-| ...                   | 其他参数同element-plus                                                   | —      | —  |
+| Name                  | Description                                                                                                                                                                                             | Type                          | Default |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|----|
+| model-value / v-model | binding value                                                                                                                                                                                           | `string[] \| number[] \| any` | —  |
+| options               | data of the options,-same as element-plus, `value` 和 `label` can be customized through `CascaderProps`.                                                                                                 | `object`                      | —  |
+| props   | config option-same as element-plus  ^[default configuration]`open clear \| enable filter \| disassociate parent \| the selected value returns only the id of the node \| value: 'id' \| label: 'title'` | `object`      | —  |
+| isKeyNumber           | options Specifies whether the value of the option item is number. If not, the default string is used                                                                                                    | `Boolean`   | false  |
+| dataType    | multiple choices => v-model Indicates the type of the binding value   `String`: `'1,2,3'` 和 `Array`: `[2,3,4]` two types                                                                                | ^[enum]`'String' \| 'Array'` | 'String'  |
+| showSelectAllBtn      | Whether to display the Select All Subset button                                                                                                                                                         | `Boolean`      | true  |
+| showRadioControl    | Whether to display the radio control when multiple: false => Built-in default custom style radio control does not appear in the case of radio                                                           | `Boolean`      | false  |
+| ...                   | other parameters are the same as element-plus                                                                                                                                                           | —      | —  |
 
 
-### Cascader Events 事件
+### Cascader Events
+
+
+## Contributors
+<vpMember />

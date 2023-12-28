@@ -36,6 +36,7 @@ interface ContainerOpts {
 
 // https://vitepress.dev/reference/site-config
 export const config: UserConfig = defineConfig({
+  base: "/element-plus-y/",
   title: 'element-plus-y',
   description: '',
   themeConfig: {

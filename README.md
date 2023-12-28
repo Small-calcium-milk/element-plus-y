@@ -9,12 +9,18 @@
   <a href="https://github.com/element-plus/element-plus">
     <img src="https://img.shields.io/badge/node-%20%3E%3D%2016-47c219" />
   </a>
-  <a href="https://npmcharts.com/compare/element-plus?minimal=true">
-    <img src="https://img.shields.io/npm/dm/element-plus.svg" />
-  </a>
-  <a href="https://codecov.io/gh/element-plus/element-plus">
-    <img src="https://codecov.io/gh/element-plus/element-plus/branch/dev/graph/badge.svg?token=BKSBO2GLZI"/>
-  </a>
+
+[//]: # (<a href="https://npmcharts.com/compare/element-plus?minimal=true">)
+
+[//]: # (  <img src="https://img.shields.io/npm/dm/element-plus.svg" />)
+
+[//]: # (</a>)
+
+[//]: # (<a href="https://codecov.io/gh/element-plus/element-plus">)
+
+[//]: # (  <img src="https://codecov.io/gh/element-plus/element-plus/branch/dev/graph/badge.svg?token=BKSBO2GLZI"/>)
+
+[//]: # (</a>)
   <br>
 </p>
 
@@ -27,8 +33,10 @@
 ## 贡献者
 
 ## 待开发计划
-时间选择组件 提供默认前几个月选项 v-model绑定值的格式(导出startTime,endTime)
-密码强度组件
+
+- 时间选择组件 提供默认前几个月选项 v-model绑定值的格式(导出startTime,endTime)
+
+- 密码强度组件
 
 ## License
 
