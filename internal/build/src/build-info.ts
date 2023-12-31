@@ -1,5 +1,5 @@
 import path from 'path'
-import { PKG_NAME } from '@element-plus/build-constants'
+import { PKG_NAME, PROJECT_NAME } from '@element-plus/build-constants'
 import { epOutput } from '@element-plus/build-utils'
 
 import type { ModuleFormat } from 'rollup'
@@ -32,9 +32,10 @@ export const buildConfig: Record<Module, BuildInfo> = {
       name: 'es',
       path: path.resolve(epOutput, 'es'),
     },
-    bundle: {
+    // bundle 这个配置没用到
+    /*bundle: {
       path: `${PKG_NAME}/es`,
-    },
+    },*/
   },
   cjs: {
     module: 'CommonJS',
@@ -44,9 +45,9 @@ export const buildConfig: Record<Module, BuildInfo> = {
       name: 'lib',
       path: path.resolve(epOutput, 'lib'),
     },
-    bundle: {
+    /*bundle: {
       path: `${PKG_NAME}/lib`,
-    },
+    },*/
   },
 }
 export const buildConfigEntries = Object.entries(

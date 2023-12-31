@@ -43,8 +43,10 @@ import {
   onMounted,
   watch,
 } from 'vue'
+// import { buildProps, definePropType } from '@element-plus/utils'
 
 import { isEmpty } from '../../../utils/utils/util'
+import { cascaderProps, CascaderProps } from './cascader'
 
 const COMPONENT_NAME = 'YCascader'
 
@@ -54,7 +56,39 @@ defineOptions({
 
 const instance: any = getCurrentInstance()
 
-const props = defineProps({
+const props = defineProps(cascaderProps)
+/*const props = defineProps(buildProps({
+  modelValue: {
+    type: definePropType<any>([String, Number, Array])
+  },
+  props: {
+    type: definePropType<any>([Object])
+  },
+  popperClass: {
+    type: String,
+    default: '',
+  },
+  isKeyNumber: {
+    type: Boolean,
+    default: false,
+  },
+  dataType: {
+    type: String,
+    values: ['String', 'Array'],
+    default: 'String',
+  },
+  // 默认显示 全选子集按钮
+  showSelectAllBtn: {
+    type: Boolean,
+    default: true,
+  },
+  // 默认不显示 单选情况下左侧的radio控件
+  showRadioControl: {
+    type: Boolean,
+    default: false,
+  },
+}) as const)*/
+/*const props = defineProps({
   modelValue: [String, Number, Array],
   props: [Object],
   popperClass: {
@@ -79,7 +113,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-})
+})*/
 // vue3 不需要改 默认的 v-model 事件名 不会和子组件的v-model冲突
 const emit = defineEmits(['update:modelValue'])
 const slots: any = useSlots()
@@ -134,7 +168,7 @@ const attrsBind: any = computed(() => {
             : 'children',
       },
       props.props ? props.props : {}
-    ),
+    ) as CascaderProps,
   }
   return obj
 })

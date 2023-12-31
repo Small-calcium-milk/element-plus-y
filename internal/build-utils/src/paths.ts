@@ -17,9 +17,9 @@ export const docRoot = resolve(projRoot, docsDirName)
 export const vpRoot = resolve(docRoot, '.vitepress')
 
 /** `/dist` */
-export const buildOutput = resolve(projRoot, 'dist')
+export const buildOutput = resolve(projRoot, 'dist', '@small_calcium_milk')
 /** `/dist/element-plus` */
-export const epOutput = resolve(buildOutput, 'element-plus')
+export const epOutput = resolve(buildOutput, 'element-plus-y')
 
 export const projPackage = resolve(projRoot, 'package.json')
 export const compPackage = resolve(compRoot, 'package.json')

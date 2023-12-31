@@ -7,4 +7,4 @@ export const YCascader = withInstall(cascader)
 
 export default YCascader
 
-// export * from "./src/*"
+export * from "./src/cascader"

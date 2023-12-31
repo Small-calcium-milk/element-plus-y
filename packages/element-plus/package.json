@@ -1,6 +1,6 @@
 {
   "name": "@small_calcium_milk/element-plus-y",
-  "version": "0.0.0-dev.1",
+  "version": "0.0.1",
   "description": "基于element-plus二次封装的ui",
   "keywords": [
     "element-plus-y",
@@ -11,9 +11,9 @@
     "ui",
     "vue"
   ],
-  "homepage": "",
+  "homepage": "https://small-calcium-milk.github.io/element-plus-y/",
   "bugs": {
-    "url": "https://codeup.aliyun.com/60580210b5bb3a7e6586550b/ybl-ui/element-plus/issues"
+    "url": "https://github.com/Small-calcium-milk/element-plus-y/issues"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -64,7 +64,7 @@
   "jsdelivr": "dist/index.full.js",
   "repository": {
     "type": "git",
-    "url": "git+https://codeup.aliyun.com/60580210b5bb3a7e6586550b/ybl-ui/element-plus.git"
+    "url": "git+https://github.com/Small-calcium-milk/element-plus-y.git"
   },
   "publishConfig": {
     "access": "public",

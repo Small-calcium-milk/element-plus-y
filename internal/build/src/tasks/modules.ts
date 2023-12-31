@@ -32,7 +32,7 @@ export const buildModules = async () => {
         setupSFC: false,
         plugins: {
           vue: vue({
-            isProduction: false,
+            isProduction: true,
           }),
           vueJsx: vueJsx(),
         },

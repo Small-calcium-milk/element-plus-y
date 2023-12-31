@@ -38,7 +38,7 @@ const reComponentName: ReComponentName = (title) => {
 }
 
 const reDocUrl: ReDocUrl = (fileName, header) => {
-  const docs = 'https://xxxx/zh-CN/component/'
+  const docs = 'https://small-calcium-milk.github.io/element-plus-y/zh-CN/component/'
   const _header = header
       ? removeTag(header).replaceAll(/\s+/g, '-').toLowerCase()
       : ''
@@ -47,7 +47,7 @@ const reDocUrl: ReDocUrl = (fileName, header) => {
 }
 
 const reWebTypesSource: ReWebTypesSource = (title) => {
-  const symbol = `El${removeTag(title)
+  const symbol = `Y${removeTag(title)
       .replaceAll(/-/g, ' ')
       .replaceAll(/^\w|\s+\w/g, (item) => {
         return item.trim().toUpperCase()

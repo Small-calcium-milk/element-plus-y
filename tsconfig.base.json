@@ -16,7 +16,8 @@
     "rootDir": ".",
     "types": [],
     "paths": {
-      "@element-plus/*": ["packages/*"]
+      "@element-plus/*": ["packages/*"],
+      // "@element-plus-y/*": ["packages/*"] // 如果自己修改了 @element-plus/components => @element-plus-y/components 就要配置下路径解析
     }
   }
 }

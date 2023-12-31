@@ -1,5 +1,5 @@
 // GlobalComponents for Volar
-import YCascader from "./packages/components/cascader";
+// import YCascader from "./packages/components/cascader";
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {

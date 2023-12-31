@@ -8,18 +8,18 @@
     "theme-chalk",
     "theme-light"
   ],
-  "homepage": "https://github.com/element-plus/element-plus/blob/dev/packages/theme-chalk/README.md",
+  "homepage": "",
   "bugs": {
-    "url": "https://github.com/element-plus/element-plus#issues"
+    "url": "https://github.com/Small-calcium-milk/element-plus-y/issues"
   },
   "license": "MIT",
-  "author": "yi.shyang@ele.me",
+  "author": "592882650@qq.com",
   "main": "index.css",
   "unpkg": "index.css",
   "jsdelivr": "index.css",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/element-plus/element-plus.git"
+    "url": "git+https://github.com/Small-calcium-milk/element-plus-y.git"
   },
   "style": "index.css",
   "scripts": {
@@ -38,5 +38,5 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0"
   },
-  "gitHead": "c69724230befa8fede0e6b9c37fb0b7e39fd7cdd"
+  "gitHead": ""
 }

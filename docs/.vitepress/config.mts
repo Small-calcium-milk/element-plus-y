@@ -41,7 +41,7 @@ export const config: UserConfig = defineConfig({
   description: '',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    // outline: [2, 6],
+    outline: [2, 6], // 2 => ## 顶级从2个#开始做标题显示在右侧边栏等级
     i18nRouting: false,
     search: {
       provider: 'local',

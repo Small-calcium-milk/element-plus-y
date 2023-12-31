@@ -29,14 +29,19 @@
 - 💪 Vue 3 Composition API 组合式api
 - 🔥 Written in TypeScript TS支持
 
+## 文档地址
+[点击访问](https://small-calcium-milk.github.io/element-plus-y)
 
 ## 贡献者
+[小钙奶阿](https://github.com/Small-calcium-milk)
 
 ## 待开发计划
 
 - 时间选择组件 提供默认前几个月选项 v-model绑定值的格式(导出startTime,endTime)
 
 - 密码强度组件
+
+## 目前重点维护中文版本zh-CN 暂不考虑英文版en-US
 
 ## License
 

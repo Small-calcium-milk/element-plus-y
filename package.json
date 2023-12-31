@@ -36,7 +36,8 @@
     "docs:gen-locale": "pnpm run -C docs gen-locale",
     "docs:crowdin-credentials": "pnpm run -C docs crowdin-credentials",
     "stub": "pnpm run -r --parallel stub",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "pnpm stub && concurrently \"pnpm gen:version\""
   },
   "peerDependencies": {
     "vue": "^3.2.0"

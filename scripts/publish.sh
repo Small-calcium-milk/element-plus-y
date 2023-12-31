@@ -7,17 +7,17 @@ pnpm update:version
 
 pnpm build
 
-cd dist/element-plus
+cd dist/@small_calcium_milk/element-plus-y
 npm publish --provenance
 cd -
 
-cd internal/eslint-config
-npm publish
-cd -
-
-cd internal/metadata
-pnpm build
-npm publish
-cd -
+#cd internal/eslint-config
+#npm publish
+#cd -
+#
+#cd internal/metadata
+#pnpm build
+#npm publish
+#cd -
 
 echo "✅ Publish completed"
