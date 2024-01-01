@@ -67,8 +67,7 @@
     "url": "git+https://github.com/Small-calcium-milk/element-plus-y.git"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "access": "public"
   },
   "style": "dist/index.css",
   "sideEffects": [
