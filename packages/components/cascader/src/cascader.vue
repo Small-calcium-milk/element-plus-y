@@ -43,10 +43,10 @@ import {
   onMounted,
   watch,
 } from 'vue'
-// import { buildProps, definePropType } from '@element-plus/utils'
 
 import { isEmpty } from '../../../utils/utils/util'
-import { cascaderProps, CascaderProps } from './cascader'
+import { cascaderEmits, cascaderProps, CascaderProps } from './cascader'
+import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
 const COMPONENT_NAME = 'YCascader'
 
@@ -57,65 +57,9 @@ defineOptions({
 const instance: any = getCurrentInstance()
 
 const props = defineProps(cascaderProps)
-/*const props = defineProps(buildProps({
-  modelValue: {
-    type: definePropType<any>([String, Number, Array])
-  },
-  props: {
-    type: definePropType<any>([Object])
-  },
-  popperClass: {
-    type: String,
-    default: '',
-  },
-  isKeyNumber: {
-    type: Boolean,
-    default: false,
-  },
-  dataType: {
-    type: String,
-    values: ['String', 'Array'],
-    default: 'String',
-  },
-  // 默认显示 全选子集按钮
-  showSelectAllBtn: {
-    type: Boolean,
-    default: true,
-  },
-  // 默认不显示 单选情况下左侧的radio控件
-  showRadioControl: {
-    type: Boolean,
-    default: false,
-  },
-}) as const)*/
-/*const props = defineProps({
-  modelValue: [String, Number, Array],
-  props: [Object],
-  popperClass: {
-    type: String,
-    default: '',
-  },
-  isKeyNumber: {
-    type: Boolean,
-    default: false,
-  },
-  dataType: {
-    type: String,
-    default: 'String',
-  },
-  // 默认显示 全选子集按钮
-  showSelectAllBtn: {
-    type: Boolean,
-    default: true,
-  },
-  // 默认不显示 单选情况下左侧的radio控件
-  showRadioControl: {
-    type: Boolean,
-    default: false,
-  },
-})*/
+
 // vue3 不需要改 默认的 v-model 事件名 不会和子组件的v-model冲突
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(cascaderEmits)
 const slots: any = useSlots()
 const attrs: any = useAttrs()
 const attrsBind: any = computed(() => {
@@ -214,7 +158,7 @@ const getChildrenDeepFn = (arr) => {
     if (!state.selectData.includes(child[attrsBind.value.props.value])) {
       temp.push(child[attrsBind.value.props.value])
     }
-    if (!isEmpty(child[attrsBind.value.props.children])) {
+    if (props.isDeepSelect && !isEmpty(child[attrsBind.value.props.children])) {
       temp.push(...getChildrenDeepFn(child[attrsBind.value.props.children]))
     }
   })
@@ -263,9 +207,9 @@ watch(
   (val: any) => {
     // console.log(val, "state.selectData");
     if (attrsBind.value.props.multiple) {
-      emit('update:modelValue', props.dataType == 'Array' ? val : val.join(','))
+      emit(UPDATE_MODEL_EVENT, props.dataType == 'Array' ? val : val.join(','))
     } else {
-      emit('update:modelValue', state.selectData)
+      emit(UPDATE_MODEL_EVENT, state.selectData)
     }
   },
   {

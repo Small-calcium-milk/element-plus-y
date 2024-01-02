@@ -1,4 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
+import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
 export const dataTypes = ['String', 'Array'] as const
 
@@ -62,6 +63,18 @@ export const cascaderProps = buildProps({
     type: Boolean,
     default: false,
   },
+  // 是否递归选择子集
+  isDeepSelect: {
+    type: Boolean,
+    default: true,
+  },
 } as const)
 
 // export type CascaderPropsY = typeof cascaderProps
+
+// UPDATE_MODEL_EVENT
+export const cascaderEmits = {
+  [UPDATE_MODEL_EVENT]: (val: CascaderValue) => !!val || val === null,
+}
+
+export type CascaderEmits = typeof cascaderEmits
