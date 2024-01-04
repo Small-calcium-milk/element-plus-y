@@ -3,5 +3,10 @@
 
 ---
 
-# 111111111111111
-vitepress data not properly injected in app
+# 测试组件
+
+:::demo
+
+test/index
+
+:::

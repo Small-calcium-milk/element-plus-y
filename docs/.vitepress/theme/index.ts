@@ -23,6 +23,19 @@ import vpMember from "../vitepress/components/vp-members/index.vue"
 // 测试源组件
 import sourceComp from '../../../packages/components/cascader/src/cascader.vue'
 
+const getAllComponentsFn = async (app) => {
+  const component_modules = import.meta.glob('../../../packages/components/*/*', {
+    eager: true,
+  })
+
+  for (const comp in component_modules) {
+    const module = component_modules[comp]
+    // TestYCascader  Module
+    app.component(`Test${module.default.name}`, module.default)
+  }
+}
+
+
 export default {
   // NotFound,
   // Layout: VPApp,
@@ -31,6 +44,8 @@ export default {
     app.use(ElementPlus)
     app.use(yblUiElementPlus)
 
+    // 注册所有组件用于测试
+    getAllComponentsFn(app);
     // 测试源组件
     app.component('sourceComp', sourceComp)
     // 贡献者
