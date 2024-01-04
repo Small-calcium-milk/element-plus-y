@@ -74,7 +74,8 @@ export const cascaderProps = buildProps({
 
 // UPDATE_MODEL_EVENT
 export const cascaderEmits = {
-  [UPDATE_MODEL_EVENT]: (val: CascaderValue) => !!val || val === null,
+  [UPDATE_MODEL_EVENT]: (val: CascaderValue) =>
+    !!val || val === null || val === '',
 }
 
 export type CascaderEmits = typeof cascaderEmits
