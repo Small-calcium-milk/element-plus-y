@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'fs/promises'
+import { mkdir, readFile, writeFile } from 'fs/promises'
 import path from 'path'
 import consola from 'consola'
 import { docRoot } from '@element-plus/build-utils'
@@ -14,6 +14,9 @@ async function main() {
   const content = await readFile(files[0], 'utf-8')
   // consola.log(chalk.cyan(content))
 
+  await mkdir(path.dirname(path.resolve(docRoot, 'examples/test/components/demo.vue')), {
+    recursive: true,
+  })
   await writeFile(
     path.resolve(docRoot, 'examples/test/components/demo.vue'),
     `${content}`

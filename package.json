@@ -38,7 +38,7 @@
     "docs:crowdin-credentials": "pnpm run -C docs crowdin-credentials",
     "stub": "pnpm run -r --parallel stub",
     "prepare": "husky install",
-    "postinstall": "pnpm stub && concurrently \"pnpm gen:version\" pnpm create_docs_demo_file"
+    "postinstall": "pnpm stub && pnpm gen:version && pnpm create_docs_demo_file"
   },
   "peerDependencies": {
     "vue": "^3.2.0"
