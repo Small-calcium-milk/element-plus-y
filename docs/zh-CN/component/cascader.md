@@ -50,6 +50,16 @@ cascader/showSelectAllBtn
 
 :::
 
+## 全选子集时 是否递归
+
+全选子集 默认递归 可以通过`isDeepSelect`来控制
+
+:::demo
+
+cascader/isDeepSelect
+
+:::
+
 ## 单选情况下 不显示radio控件
 
 可以通过`showRadioControl`来控制
