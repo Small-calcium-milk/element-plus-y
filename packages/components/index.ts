@@ -1,4 +1,5 @@
 export * from './cascader'
+export * from './passwordStrength'
 
 // plugins
 /*export * from './infinite-scroll'
