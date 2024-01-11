@@ -30,7 +30,8 @@
 - 🔥 Written in TypeScript TS支持
 
 ## 文档地址
-[点击访问](https://small-calcium-milk.github.io/element-plus-y)
+- [github点击访问](https://small-calcium-milk.github.io/element-plus-y)
+- [gitee点击访问](http://ybl1314.gitee.io/element-plus-y/)
 
 ## 贡献者
 [小钙奶阿](https://github.com/Small-calcium-milk)
