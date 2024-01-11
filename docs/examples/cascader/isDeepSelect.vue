@@ -17,7 +17,7 @@
     <p>全选子集 不递归</p>
     <y-cascader
         ref="formRef"
-        v-model="form.a"
+        v-model="form.c"
         :options="formOptions.users"
         :props="{
         multiple: true,
