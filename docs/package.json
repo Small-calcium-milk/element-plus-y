@@ -8,13 +8,14 @@
     "docs:dev": "vitepress dev --port 5001",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "npm:element-plus-y": "pnpm i @small_calcium_milk/element-plus-y@file:../dist/@small_calcium_milk/element-plus-y"
+    "npm:element-plus-y": "pnpm i @small_calcium_milk/element-plus-y@file:../dist/@small_calcium_milk/element-plus-y",
+    "upgrade:element-plus-y": "pnpm upgrade @small_calcium_milk/element-plus-y"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@small_calcium_milk/element-plus-y": "npm:@small_calcium_milk/element-plus-y@latest",
+    "@small_calcium_milk/element-plus-y": "^0.0.24",
     "@vitepress-demo-preview/component": "^2.3.2",
     "@vitepress-demo-preview/plugin": "^1.2.2",
     "@vue/shared": "3.2.37",
