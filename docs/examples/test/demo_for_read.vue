@@ -14,6 +14,7 @@
 </template>
 
 <script lang="ts" setup>
+import "@element-plus/theme-chalk/src/index.scss"
 import { ref, reactive, toRefs } from 'vue'
 
 const value = ref([])
