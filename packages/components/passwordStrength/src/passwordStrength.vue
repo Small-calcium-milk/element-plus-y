@@ -1,14 +1,76 @@
 <template>
   <el-form
     :ref="setRefFn"
-    v-model="selectData"
-    :style="styles"
+    :model="form"
+    class="passwordStrength"
     v-bind="attrsBind"
   >
     <slot name="top" />
+    <el-form-item
+      :label="fieldsOption.pwdLabel + ':'"
+      v-if="fieldsOption.pwdValue && fieldsOption.show"
+      :prop="fieldsOption.pwdValue"
+    >
+      <el-input
+        :type="newPsdtype"
+        v-model="form[fieldsOption.pwdValue]"
+        :disabled="fieldsOption.disabled"
+      >
+        <template v-slot:suffix>
+          <span class="show_pwd" @click="showPwd" v-if="!fieldsOption.disabled">
+            <el-icon v-if="newPsdtype == 'password'"><View /></el-icon>
+            <el-icon v-else><Hide /></el-icon>
+          </span>
+        </template>
+      </el-input>
 
-    <slot name="bottom"></slot>
-    <slot name="footer"></slot>
+      <div class="intensity" v-if="!fieldsOption.disabled">
+        <span class="psdText">密码强度</span>
+        <span class="line" :class="[level.includes('low') ? 'low' : '']">
+          低
+        </span>
+        <span class="line" :class="[level.includes('middle') ? 'middle' : '']">
+          中
+        </span>
+        <span class="line" :class="[level.includes('high') ? 'high' : '']">
+          高
+        </span>
+        <div class="warningtext">
+          密码应由
+          {{ fieldsOption.minLength || defaultFieldsOption.minLength }}-{{
+            fieldsOption.maxLength || defaultFieldsOption.maxLength
+          }}
+          位数字、字母、符号组成。 请不要使用容易被猜到的密码,密码强度必须达到{{
+            levelOptions[fieldsOption.level]
+          }}。
+        </div>
+      </div>
+    </el-form-item>
+    <el-form-item
+      :label="fieldsOption.againPasswordLabel + ':'"
+      v-if="fieldsOption.againPasswordValue"
+      :prop="fieldsOption.againPasswordValue"
+    >
+      <el-input
+        :type="confirmPsdtype"
+        v-model="form[fieldsOption.againPasswordValue]"
+        :disabled="fieldsOption.disabled"
+      >
+        <template v-slot:suffix>
+          <span
+            slot="suffix"
+            class="show_pwd"
+            @click="showconfirmPwd"
+            v-if="!fieldsOption.disabled"
+          >
+            <el-icon v-if="confirmPsdtype == 'password'"><View /></el-icon>
+            <el-icon v-else><Hide /></el-icon>
+          </span>
+        </template>
+      </el-input>
+    </el-form-item>
+    <slot name="bottom" />
+    <slot />
   </el-form>
 </template>
 
@@ -21,15 +83,22 @@ import {
   reactive,
   toRefs,
   onMounted,
-  watch,
 } from 'vue'
+// import { cloneDeep } from 'lodash-unified'
+import { View, Hide } from '@element-plus/icons-vue'
 
-import { isEmpty } from '../../../utils/utils/util'
 import {
   passwordStrengthEmits,
   passwordStrengthProps,
+  defaultFieldsOption,
 } from './passwordStrength'
-import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
+// import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
+
+const levelOptions = {
+  low: '低',
+  middle: '中',
+  high: '高',
+}
 
 const COMPONENT_NAME = 'YPasswordStrength'
 
@@ -45,24 +114,33 @@ const props = defineProps(passwordStrengthProps)
 const emit = defineEmits(passwordStrengthEmits)
 const slots: any = useSlots()
 const attrs: any = useAttrs()
+
+const fieldsOption: any = computed(() => {
+  return Object.assign({}, defaultFieldsOption, props.fieldsOptions)
+})
+
 const attrsBind: any = computed(() => {
   let obj = {
-    clearable: true, // 默认开启清空
-    filterable: true, // 默认开启过滤
     ...attrs,
-    popperClass: !props.showRadioControl
-      ? `${props.popperClass} popper-custom`
-      : props.popperClass, // 默认自定义样式
-    props: Object.assign(
+    rules: Object.assign(
       {},
       {
-        // 指定选项的子选项为选项对象的某个属性值
-        children:
-          props.props && props.props.hasOwnProperty('children')
-            ? props.props.children
-            : 'children',
+        [fieldsOption.value.pwdValue]: [
+          {
+            required: true,
+            validator: checkPassword,
+            trigger: ['blur', 'change'],
+          },
+        ],
+        [fieldsOption.value.againPasswordValue]: [
+          {
+            required: true,
+            validator: checkConfirmPassword,
+            trigger: ['blur', 'change'],
+          },
+        ],
       },
-      props.props ? props.props : {}
+      attrs.rules ? attrs.rules : {}
     ),
   }
   return obj
@@ -70,85 +148,130 @@ const attrsBind: any = computed(() => {
 
 const state: any = reactive({
   refData: [] as Array<any>,
-  selectData: null as any,
+  level: [],
+  confirmPsdtype: 'password',
+  newPsdtype: 'password',
 })
 
-const { selectData } = toRefs(state)
+const { level, confirmPsdtype, newPsdtype } = toRefs(state)
 
 onMounted(() => {
-  // console.log(state.refData[0], "state.refData[0]");
-  // console.log(state.refData[0].$, "state.refData[0].$");
   extendMethod()
+})
+
+const form = computed<object>({
+  get() {
+    return props.model as object
+  },
+  set(val) {
+    emit('model', val)
+  },
 })
 
 // 继承Methods
 const extendMethod = () => {
   // 把方法注入到实例的exposed中
   const entries = Object.entries(state.refData[0].$.exposed)
-  // console.log('111', entries)
   for (const [key, value] of entries) {
     instance.exposed[key] = value
   }
 }
 
 const setRefFn = (el: any) => {
-  // console.log(el, "elel");
   state.refData.push(el)
 }
 
+//点击小眼睛
+const showPwd = () => {
+  if (fieldsOption.disabled) return
+  if (state.newPsdtype === 'password') {
+    state.newPsdtype = ''
+  } else {
+    state.newPsdtype = 'password'
+  }
+}
+//点击小眼睛
+const showconfirmPwd = () => {
+  if (fieldsOption.value.disabled) return
+  if (state.confirmPsdtype === 'password') {
+    state.confirmPsdtype = ''
+  } else {
+    state.confirmPsdtype = 'password'
+  }
+}
+// 校验密码
+const checkPassword = (rule, value, callback) => {
+  // console.log(rule, value, 'rule, value')
+  if (fieldsOption.value.disabled) return callback()
+  state.level = []
+  // 校验是数字
+  const regex1 = /^\d+$/
+  // 校验字母
+  const regex2 = /^[A-Za-z]+$/
+  // 校验符号
+  const regex3 =
+    /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、]+$/
+  if (regex1.test(value)) {
+    state.level.push('low')
+  } else if (regex2.test(value)) {
+    state.level.push('low')
+  } else if (regex3.test(value)) {
+    state.level.push('low')
+  } else if (/^[A-Za-z\d]+$/.test(value)) {
+    state.level.push('low')
+    state.level.push('middle')
+  } else if (
+    /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、\d]+$/.test(
+      value
+    )
+  ) {
+    state.level.push('low')
+    state.level.push('middle')
+  } else if (
+    /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、A-Za-z]+$/.test(
+      value
+    )
+  ) {
+    state.level.push('low')
+    state.level.push('middle')
+  } else if (
+    /^[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘'，。、A-Za-z\d]+$/.test(
+      value
+    )
+  ) {
+    state.level.push('low')
+    state.level.push('middle')
+    state.level.push('high')
+  }
+  if (!state.level.includes(fieldsOption.value.level || 'high')) {
+    return callback('密码强度必须达到' + levelOptions[fieldsOption.value.level])
+  }
+
+  if (!value) {
+    return callback('密码不能为空')
+  }
+  if (value.length < fieldsOption.value.minLength) {
+    return callback(`密码不少于${fieldsOption.value.minLength}位`)
+  }
+  if (value.length > fieldsOption.value.maxLength) {
+    return callback(`密码不大于${fieldsOption.value.maxLength}位`)
+  }
+  return callback()
+}
+// 确认密码
+const checkConfirmPassword = (rule, value, callback) => {
+  if (!value) {
+    return callback('请输入确认密码')
+  }
+  if (value != form.value[fieldsOption.value.pwdValue]) {
+    return callback('两次密码输入不一致，请重新输入')
+  }
+  return callback()
+}
 
 /*watchEffect(() => {
   console.log(props.modelValue, 'props.modelValue')
 })*/
-
-watch(
-  () => props.modelValue,
-  (val: any) => {
-    // console.log(val, "props.modelValue");
-    if (attrsBind.value.props.multiple) {
-      // 多选
-      let list: any = null
-      if (props.dataType == 'Array') {
-        list = val
-      } else {
-        list = val ? val.split(',') : []
-      }
-      if (props.isKeyNumber) {
-        list.map((item, index) => {
-          list[index] = Number(item)
-        })
-      }
-      state.selectData = list
-    } else {
-      // let val = props.modelValue;
-      // 单选
-      if (props.isKeyNumber) {
-        state.selectData = Number(val)
-      } else {
-        state.selectData = val
-      }
-    }
-  },
-  {
-    immediate: true,
-    deep: true,
-  }
-)
-watch(
-  () => state.selectData,
-  (val: any) => {
-    // console.log(val, "state.selectData");
-    if (attrsBind.value.props.multiple) {
-      emit(UPDATE_MODEL_EVENT, props.dataType == 'Array' ? val : val.join(','))
-    } else {
-      emit(UPDATE_MODEL_EVENT, state.selectData)
-    }
-  },
-  {
-    immediate: true,
-    deep: true,
-  }
-)
 
 // 暴露方法出去 保险起见
 defineExpose({ ...instance.exposed })

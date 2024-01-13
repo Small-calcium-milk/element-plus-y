@@ -1,1 +1,1 @@
-import '@element-plus/theme-chalk/el-cascader.css'
+import '@element-plus/theme-chalk/el-passwordStrength.css'

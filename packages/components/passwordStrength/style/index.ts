@@ -1,1 +1,1 @@
-import '@element-plus/theme-chalk/src/cascader.scss'
+import '@element-plus/theme-chalk/src/passwordStrength.scss'
