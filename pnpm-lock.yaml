@@ -223,8 +223,8 @@ importers:
   docs:
     dependencies:
       '@small_calcium_milk/element-plus-y':
-        specifier: ^0.0.24
-        version: 0.0.24(element-plus@2.4.4)(vue@3.3.13)
+        specifier: ^0.0.26
+        version: 0.0.26(element-plus@2.4.4)(vue@3.3.13)
       '@vitepress-demo-preview/component':
         specifier: ^2.3.2
         version: 2.3.2(vitepress@1.0.0-rc.31)(vue@3.3.13)
@@ -3756,8 +3756,8 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@small_calcium_milk/element-plus-y@0.0.24(element-plus@2.4.4)(vue@3.3.13):
-    resolution: {integrity: sha512-zlPeUh1oGq/X2Xb/cxBPAYWkhCH9tG3qzkP624irtZrWWtGfDOA7Zi3RRZpnuk1Do5zcGQ3AO2tYqAPLUd6w0A==}
+  /@small_calcium_milk/element-plus-y@0.0.26(element-plus@2.4.4)(vue@3.3.13):
+    resolution: {integrity: sha512-nA+WPCRpuL7zp2GTckOC7S82Ti4PX5oAc/XvaW2efW2qG0NqOykq0i1KUDGtxEdtsrANm4a1kz5y++FhZv6fOQ==}
     peerDependencies:
       element-plus: ^2.4.2
       vue: ^3.2.0
