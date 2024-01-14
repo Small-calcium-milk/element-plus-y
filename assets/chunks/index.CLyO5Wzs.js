@@ -1,0 +1,1 @@
+import{_ as e}from"./demo.vue_vue_type_script_setup_true_lang.FHM5Bkkv.js";import{d as o,o as a,c as n,I as t}from"./framework.ipPE9Npu.js";const p=o({__name:"index",setup(r){return(c,s)=>(a(),n("div",null,[t(e)]))}});export{p as default};
