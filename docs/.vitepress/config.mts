@@ -202,6 +202,10 @@ export const config: any = ({ mode }) => {
                     text: 'cascader 级联选择器',
                     link: '/zh-CN/component/cascader',
                   },
+                  {
+                    text: 'passwordStrength 密码强度',
+                    link: '/zh-CN/component/passwordStrength',
+                  },
                 ],
               },
             ],

@@ -37,8 +37,8 @@
         </span>
         <div class="warningtext">
           密码应由
-          {{ fieldsOption.minLength || defaultFieldsOption.minLength }}-{{
-            fieldsOption.maxLength || defaultFieldsOption.maxLength
+          {{ fieldsOption.minLength }}-{{
+            fieldsOption.maxLength
           }}
           位数字、字母、符号组成。 请不要使用容易被猜到的密码,密码强度必须达到{{
             levelOptions[fieldsOption.level]

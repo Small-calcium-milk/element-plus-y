@@ -1,7 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
-export const levelEnum = ['low', 'middle', 'high'] as const
 export type LevelEnum = 'low' | 'middle' | 'high'
 
 export interface FieldsOption {
